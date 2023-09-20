@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Services;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+
+class GenericService
+{
+    /**
+     * Construct of a class
+     *
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * Returns a collection of the model
+     *
+     * @return Collection
+     */
+    public function index(): Collection
+    {
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param array $attributes
+     * @return Model
+     */
+    public function create(array $attributes): Model
+    {
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return Model
+     */
+    public function show(int $id): Model
+    {
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param array $attributes
+     * @param int $id
+     * @return Model
+     */
+    public function update(array $attributes, int $id): Model
+    {
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function destroy(int $id): bool
+    {
+    }
+}

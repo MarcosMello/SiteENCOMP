@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Repository;
+
+use App\Models\Model;
+use App\Repository\Interfaces\GenericRepositoryInterface;
+use JetBrains\PhpStorm\Pure;
+
+class GenericRepository extends BaseRepository implements GenericRepositoryInterface
+{
+    /**
+     * @param Model $model
+     */
+    #[Pure]
+    public function __construct(Model $model)
+    {
+        parent::__construct($model);
+    }
+}
