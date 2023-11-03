@@ -57,8 +57,8 @@ Route::middleware('locale')->group(function () {
         Route::resource('attendeeCoffeeBreak', AttendeeCoffeeBreakController::class);
         Route::resource('eventTicketCoffeeBreak', EventTicketCoffeeBreakController::class);
 
-        Route::get('populateDB', [DashboardController::class, 'startAttendeesCoffeeBreaks']);
-        Route::get('generateQRCodes', [DashboardController::class, 'generateAttendeesQRCodePage']);
+        Route::get('populateDB', [DashboardController::class, 'startAttendeesCoffeeBreaks'])->name("populateDB");
+        Route::get('generateQRCodes', [DashboardController::class, 'generateAttendeesQRCodePage'])->name("generateQRCodes");
     });
 });
 
