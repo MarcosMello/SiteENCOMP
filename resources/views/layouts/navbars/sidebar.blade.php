@@ -19,13 +19,6 @@
                 </a>
             </li>
 
-            <li class="nav-item{{ $activePage == 'client-management' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('client.index') }}">
-                    <i class="sidebar-mini"><span class="material-icons">supervisor_account</span></i>
-                    <span class="sidebar-normal">{{ __('Clients') }} </span>
-                </a>
-            </li>
-
             <!-- Relacionados ao Administrador e o Moderador, deixar sempre por ultimo -->
             @if (Auth::user()->access_level <= 1)
                 <li
@@ -41,7 +34,39 @@
                             <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
                                 <a class="nav-link" href="{{ route('user.index') }}">
                                     <i class="sidebar-mini"><span class="material-icons">supervisor_account</span></i>
-                                    <span class="sidebar-normal">{{ __('Users') }} </span>
+                                    <span class="sidebar-normal"> {{ __('Users') }} </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item{{ $activePage == 'coffeeBreak-management' ? ' active' : '' }}">
+                                <a class="nav-link" href="{{ route('coffeeBreak.index') }}">
+                                    <i class="sidebar-mini"><span class="material-icons">coffee</span></i>
+                                    <span class="sidebar-normal"> {{ __('Coffee Breaks') }} </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item{{ $activePage == 'eventTicketCoffeeBreak-management' ? ' active' : '' }}">
+                                <a class="nav-link" href="{{ route('eventTicketCoffeeBreak.index') }}">
+                                    <i class="sidebar-mini"><span class="material-icons">emoji_food_beverage</span></i>
+                                    <span class="sidebar-normal"> {{ __('Coffee Breaks To Event Tickets') }} </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item{{ $activePage == 'attendee-management' ? ' active' : '' }}">
+                                <a class="nav-link" href="{{ route('attendee.index') }}">
+                                    <i class="sidebar-mini"><span class="material-icons">groups</span></i>
+                                    <span class="sidebar-normal"> {{ __('Attendees') }} </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item{{ $activePage == 'attendeeCoffeeBreak-management' ? ' active' : '' }}">
+                                <a class="nav-link" href="{{ route('attendeeCoffeeBreak.index') }}">
+                                    <i class="sidebar-mini"><span class="material-icons">coffee</span></i>
+                                    <span class="sidebar-normal"> {{ __("Attendees' Coffee Breaks") }} </span>
                                 </a>
                             </li>
                         </ul>
@@ -49,7 +74,7 @@
                             <li class="nav-item{{ $activePage == 'log-list' ? ' active' : '' }}">
                                 <a class="nav-link" href="{{ route('log.index') }}">
                                     <i class="sidebar-mini"><span class="material-icons">history</span></i>
-                                    <span class="sidebar-normal">{{ __('Logs') }} </span>
+                                    <span class="sidebar-normal"> {{ __('LogsText') }} </span>
                                 </a>
                             </li>
                         </ul>

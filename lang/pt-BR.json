@@ -101,7 +101,7 @@
     "Access Levels": "Niveis de Acesso",
     "Create User": "Criar Usuário",
     "Edit User": "Editar Usuário",
-    "Logs": "Histórico",
+    "LogsText": "Histórico",
     "Category": "Categoria",
     "Message": "Mensagem",
     "Date": "Data",
@@ -138,5 +138,8 @@
     "City": "Cidade",
     "State": "Estado",
     "Country": "País",
-    "Zip Code": "CEP"
+    "Zip Code": "CEP",
+    "Coffee Breaks": "Coffee Breaks",
+    "Attendees": "Inscritos",
+    "Attendee's Coffee Break": "Coffee Break dos Inscritos"
 }

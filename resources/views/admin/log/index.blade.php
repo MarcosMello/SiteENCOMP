@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'log-list', 'titlePage' => __('Logs')])
+@extends('layouts.app', ['activePage' => 'log-list', 'titlePage' => __('LogsText')])
 
 @section('content')
     <div class="content">
@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">{{ __('Logs') }}</h4>
+                            <h4 class="card-title ">{{ __('LogsText') }}</h4>
                             <p class="card-category">{{ __('System Audit Record') }}</p>
                         </div>
                         <div class="card-body">
