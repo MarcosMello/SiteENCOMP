@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('event__ticket__coffee_breaks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('cpf')->unique();
-            $table->string('email')->unique();
-            $table->string('phone');
-            $table->foreignId('address_id')->constrained()->onDelete('cascade');
-            $table->softDeletes();
+            $table->integer("eventID");
+            $table->string("event_name");
+            $table->string("ticket_name");
+
+            $table->foreignId("coffee_break_id")
+                ->references("id")
+                ->on("coffee_breaks")
+                ->onDelete("cascade");
+
             $table->timestamps();
         });
     }
@@ -32,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('event__ticket__coffee_breaks');
     }
 };
