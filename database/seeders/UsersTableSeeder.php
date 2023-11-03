@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Administrator',
-            'email' => 'admin@adapti.info',
+            'email' => 'admin@encomp.com.br',
             'email_verified_at' => now(),
             'password' => Hash::make('secret'),
             'access_level' => 0,
