@@ -3,33 +3,35 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ClientCreateRequest;
-use App\Http\Requests\ClientUpdateRequest;
-use App\Services\ClientService;
+use App\Http\Requests\StoreCoffeeBreakRequest;
+use App\Http\Requests\UpdateCoffeeBreakRequest;
+use App\Models\CoffeeBreak;
+use App\Services\CoffeeBreakService;
 
-class ClientController extends Controller
+class CoffeeBreakController extends Controller
 {
-    private ClientService $clientService;
+    private CoffeeBreakService $coffeeBreakService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ClientService $clientService)
+    public function __construct(CoffeeBreakService $coffeeBreakService)
     {
-        $this->clientService = $clientService;
+        $this->coffeeBreakService = $coffeeBreakService;
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the coffeeBreaks
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\CoffeeBreak $model
+     * @return \Illuminate\View\View
      */
     public function index(): \Illuminate\View\View
     {
-        $clients = $this->clientService->index();
-        return view('admin.client.index', compact('clients'));
+        $coffeeBreaks = $this->coffeeBreakService->index();
+        return view('admin.coffeeBreak.index', compact('coffeeBreaks'));
     }
 
     /**
@@ -39,21 +41,20 @@ class ClientController extends Controller
      */
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.client.crud');
+        return view('admin.coffeeBreak.crud');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param ClientCreateRequest $request
+     * @param StoreCoffeeBreakRequest $request
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Throwable
      */
-    public function store(ClientCreateRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(StoreCoffeeBreakRequest $request): \Illuminate\Http\RedirectResponse
     {
         $data = $request->validated();
-        $this->clientService->create($data);
-        return redirect()->route('client.index')->with('success', __('Client created with success!'));
+        $this->coffeeBreakService->create($data);
+        return redirect()->route('coffeeBreak.index')->with('success', __('CoffeeBreak created with success!'));
     }
 
     /**
@@ -64,8 +65,8 @@ class ClientController extends Controller
      */
     public function show(int $id): bool|string
     {
-        $client = $this->clientService->show($id);
-        return json_encode($client);
+        $coffeeBreak = $this->coffeeBreakService->show($id);
+        return json_encode($coffeeBreak);
     }
 
     /**
@@ -76,22 +77,22 @@ class ClientController extends Controller
      */
     public function edit(int $id): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $client = $this->clientService->show($id);
-        return view('admin.client.crud', compact('client'));
+        $coffeeBreak = $this->coffeeBreakService->show($id);
+        return view('admin.coffeeBreak.crud', compact('coffeeBreak'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param ClientUpdateRequest $request
+     * @param UpdateCoffeeBreakRequest $request
      * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(ClientUpdateRequest $request, int $id): \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+    public function update(UpdateCoffeeBreakRequest $request, int $id): \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
     {
         $data = $request->validated();
-        $this->clientService->update($data, $id);
-        return redirect()->route('client.index')->with('success', __('Client updated with success!'));
+        $this->coffeeBreakService->update($data, $id);
+        return redirect(route('coffeeBreak.index'))->with('success', __('CoffeeBreak updated with success!'));
     }
 
     /**
@@ -102,7 +103,7 @@ class ClientController extends Controller
      */
     public function destroy(int $id): \Illuminate\Http\RedirectResponse
     {
-        $this->clientService->destroy($id);
-        return redirect()->route('client.index')->with('success', __('Client deleted with success!'));
+        $this->coffeeBreakService->destroy($id);
+        return redirect()->route('coffeeBreak.index')->with('success', __('CoffeeBreak deleted with success!'));
     }
 }
