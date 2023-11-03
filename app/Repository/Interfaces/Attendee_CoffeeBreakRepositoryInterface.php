@@ -2,7 +2,7 @@
 
 namespace App\Repository\Interfaces;
 
-interface ClientRepositoryInterface
+interface Attendee_CoffeeBreakRepositoryInterface
 {
 
 }
