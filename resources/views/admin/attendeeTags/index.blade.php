@@ -52,6 +52,8 @@
 
         justify-content: space-evenly;
         align-items: center;
+
+        padding: 2.5cm 0 2.5cm 0;
     }
 
     .tag{
