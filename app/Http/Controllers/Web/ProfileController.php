@@ -53,7 +53,7 @@ class ProfileController extends Controller
     public function password(PasswordRequest $request): \Illuminate\Http\RedirectResponse
     {
         $data = $request->validated();
-        $this->profileService->update($data);
+        $this->profileService->password($data);
         return back()->with(__('Password successfully updated.'));
     }
 }

@@ -20,6 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/testEvent', function () {
-    //dd(\App\API\Sympla\SymplaAPI::getAllFromEndpoint("v3/events/2172919/participants"));
-    dd(\App\API\Sympla\SymplaAPI::getAllFromEndpoint("v3/events/2172919/participants/ticketNumber/TARS-GE-0NZB"));
+    //dd(\App\API\Sympla\SymplaAPI::getAllFromEndpoint(\App\API\Sympla\SymplaAPI::getParticipantsURL(2172919)));
+    dd(App\API\Sympla\client::get("v4/events"));
 });
