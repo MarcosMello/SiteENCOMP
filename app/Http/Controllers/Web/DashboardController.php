@@ -70,18 +70,20 @@ class DashboardController extends Controller
             }
         });
 
-        return view('dashboard');
+        return $this->generateAttendeesQRCodePage();
     }
 
-    public function generateAttendeesQRCode(){
-        $attendees = Attendee::all();
-        $QRCodeGenerator = QrCode::format('svg')->errorCorrection('H');
+    public function generateAttendeesQRCodePage(){
+        $sheetWidthCM = 21;
+        $sheetHeightCM = 29.7;
 
-        foreach ($attendees as $attendee){
-            Storage::put("public/qrcodes/" . preg_replace('/\s+/', '', $attendee->name) . ".svg",
-                $QRCodeGenerator->generate($attendee->id));
-        }
+        $tagWidthCM = 5;
+        $tagHeightCM = 2;
 
-        return view('dashboard');
+        $perSheets = intdiv($sheetWidthCM, $tagWidthCM) * (intdiv($sheetHeightCM, $tagHeightCM) - 2);
+
+        $attendeesPages = Attendee::all()->chunk($perSheets);
+
+        return view('admin.attendeeTags.index', compact("attendeesPages"));
     }
 }
