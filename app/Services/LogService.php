@@ -49,4 +49,12 @@ class LogService
         $logMessage = '[' . $user->id . ' - ' . $user->name . '];;[' . $createdId . ' - ' . $createdName . ']';
         return $this->logRepository->create(['log' => $logMessage, 'category' => $category]);
     }
+
+    public function createWithStringId(string $createdId, string $createdName, string $category): \Illuminate\Database\Eloquent\Model
+    {
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        $logMessage = '[' . $user->id . ' - ' . $user->name . '];;[' . $createdId . ' - ' . $createdName . ']';
+        return $this->logRepository->create(['log' => $logMessage, 'category' => $category]);
+    }
 }
