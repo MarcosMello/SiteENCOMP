@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SearchAttendee_CoffeeBreakRequest;
 use App\Http\Requests\StoreAttendee_CoffeeBreakRequest;
 use App\Http\Requests\UpdateAttendee_CoffeeBreakRequest;
+use App\Http\Requests\UpdateAvailability_Attendee_CoffeeBreakRequest;
 use App\Services\Attendee_CoffeeBreakService;
 
 class AttendeeCoffeeBreakController extends Controller
@@ -90,5 +92,26 @@ class AttendeeCoffeeBreakController extends Controller
     public function destroy(Attendee_CoffeeBreak $attendee_CoffeeBreak)
     {
         //
+    }
+
+    public function getAttendeeCoffeeBreaks(SearchAttendee_CoffeeBreakRequest $requests){
+        $data = $requests->validated();
+
+        $attendeeCoffeeBreaks = $this->attendee_CoffeeBreakService->showByAttendeeID($data['attendee_id']);
+
+        return !$attendeeCoffeeBreaks->isEmpty() ?
+            view('qrcodeScanner.form', compact("attendeeCoffeeBreaks")) :
+            redirect('scanner')->with('message',
+                "Attendee associated with uuid " . $data['attendee_id'] . " was not found.");
+    }
+
+    public function updateAvailability(UpdateAvailability_Attendee_CoffeeBreakRequest $request){
+        $data = $request->validated();
+
+        $attendeeCoffeeBreak = $this->attendee_CoffeeBreakService->updateAvailability($data['id'], $data['is_available']);
+
+        return redirect('scanner')->with('message', $attendeeCoffeeBreak->attendee->name . " Coffee Break " .
+            $attendeeCoffeeBreak->event_coffeeBreak->coffeeBreak->name . " availability set to " .
+            $attendeeCoffeeBreak->is_available . ".");
     }
 }

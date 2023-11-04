@@ -59,9 +59,12 @@ Route::middleware('locale')->group(function () {
 
         Route::get('populateDB', [DashboardController::class, 'startAttendeesCoffeeBreaks'])->name("populateDB");
         Route::get('generateQRCodes', [DashboardController::class, 'generateAttendeesQRCodePage'])->name("generateQRCodes");
-    });
-});
 
-Route::get('testQRCode', function (){
-    return QrCode::generate("https://open.spotify.com/track/0qAIiGFKLdV1xpNlEhjpq8?si=2418a7c2a9e6460e");
+        Route::get('scanner', function (){
+            return view("qrcodeScanner.index");
+        })->name("scanner");
+
+        Route::post('getAttendeeCoffeeBreaks', [AttendeeCoffeeBreakController::class, 'getAttendeeCoffeeBreaks'])->name('getAttendeeCoffeeBreaks');
+        Route::post('updateAvailability', [AttendeeCoffeeBreakController::class, 'updateAvailability'])->name("updateAvailability");
+    });
 });

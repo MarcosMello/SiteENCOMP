@@ -62,6 +62,12 @@ class Attendee_CoffeeBreakService
         });
     }
 
+    public function showByAttendeeID(string $attendeeID){
+        return DB::transaction(function () use ($attendeeID){
+            return $this->Attendee_CoffeeBreakRepository->findByAttendeeID($attendeeID);
+        });
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -76,6 +82,14 @@ class Attendee_CoffeeBreakService
             $this->logService->create($attendee_CoffeeBreak->id, $attendee_CoffeeBreak->attendee_uuid . "x" . $attendee_CoffeeBreak->event_coffee_break_id, 'attendee_CoffeeBreaks.update');
 
             return $attendee_CoffeeBreak;
+        });
+    }
+
+    public function updateAvailability(int $id, bool $is_available){
+        return DB::transaction(function () use ($id, $is_available){
+            $attendee_CoffeeBreak = $this->show($id);
+            $attendee_CoffeeBreak->is_available = $is_available;
+            return $this->Attendee_CoffeeBreakRepository->update($attendee_CoffeeBreak->toArray(), $id);
         });
     }
 

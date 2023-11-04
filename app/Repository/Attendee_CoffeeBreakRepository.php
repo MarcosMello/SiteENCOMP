@@ -13,4 +13,8 @@ class Attendee_CoffeeBreakRepository extends BaseRepository implements Attendee_
     {
         parent::__construct($attendee_CoffeeBreak);
     }
+
+    public function findByAttendeeID(string $attendeeID){
+        return $this->model->newQuery()->where('attendee_uuid', '=', $attendeeID)->get();
+    }
 }

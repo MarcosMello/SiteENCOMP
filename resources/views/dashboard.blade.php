@@ -13,6 +13,11 @@
                 <i class="material-icons">add_circle_outline</i>{{ __('Generate Attendees QRCode Page') }}
               </button>
           </a>
+          <a href="{{route("scanner")}}">
+              <button type="button" title="{{ __('Scan QRCodes') }}" class="btn btn-primary add-button" style="display: flex; flex-direction: row; align-items: center">
+                  <span class="material-symbols-outlined">qr_code_scanner</span>{{ __('Scan QRCodes') }}
+              </button>
+          </a>
       </div>
   </div>
 @endsection
